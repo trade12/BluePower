@@ -12,7 +12,7 @@ import net.minecraft.village.MerchantRecipeList;
 import java.util.Random;
 
 /**
- * Created by kieran on 07/08/2014.
+ * @author kieran  on 07/08/2014.
  */
 public class VillagerTradeHandler implements VillagerRegistry.IVillageTradeHandler {
     public void manipulateTradesForVillager(EntityVillager villager, MerchantRecipeList recipeList, Random random)
