@@ -8,7 +8,11 @@
 
 package com.bluepowermod;
 
+import com.bluepowermod.villager.VillagerTradeHandler;
+import cpw.mods.fml.common.registry.VillagerRegistry;
+import cpw.mods.fml.relauncher.Side;
 import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 
@@ -54,6 +58,7 @@ public class BluePower {
     public static CommonProxy proxy;
     public static Logger log;
     public static Configuration config;
+    public static final ResourceLocation texture = new ResourceLocation("bluepower", "textures/villagers/BluePowerVillager.png");
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
@@ -94,6 +99,12 @@ public class BluePower {
         NetworkHandler.init();
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GUIHandler());
         CompatibilityUtils.init(event);
+
+        if (event.getSide()== Side.CLIENT){
+            VillagerRegistry.instance().registerVillagerId(457);
+            VillagerRegistry.instance().registerVillagerSkin(457, texture);
+            VillagerRegistry.instance().registerVillageTradeHandler(457, new VillagerTradeHandler());
+        }
     }
 
     @EventHandler
